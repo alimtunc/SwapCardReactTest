@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { CardBox } from "../assets/AppStyle";
+import { CardBox, Button } from "../assets/AppStyle";
+import FavoritesButton from "./FavoritesButton";
 
 const Title = styled.h1`
   font-size: 1.5em;
@@ -13,16 +14,10 @@ const BiographBox = styled.section`
   margin-bottom: 30px;
 `;
 
-const DetailsButton = styled.button`
-  position: absolute;
-  color: #2502461;
-  font-size: 1em;
-  border: 2px solid #00cc88;
-  border-radius: 3px;
-  width: 130px;
-  height: 40px;
-  bottom: 5px;
+const DetailsButton = styled(Button)`
+  bottom: 10px;
   right: 10px;
+  margin-top: 10px;
 `;
 
 class ArtistCard extends Component {
@@ -35,11 +30,17 @@ class ArtistCard extends Component {
           .concat("...")
       : "God damn.. who let the intern with the database ?";
 
+    let area = this.props.artist.area
+      ? this.props.artist.area.name
+      : "No area found";
+
     return (
       <CardBox>
         <Title>{this.props.artist.name}</Title>
         <BiographBox>
-          <p>Description :</p>
+          <h3>Area :</h3>
+          {area}
+          <h3>Description :</h3>
           {biography}
           <Link
             to={{

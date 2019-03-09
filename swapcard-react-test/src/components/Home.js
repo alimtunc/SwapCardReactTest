@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import { Header } from "../assets/AppStyle";
 import "./ArtistCard.css";
+import FavoritesSidebar from "./FavoritesSidebar";
 
 const ARTISTES = gql`
   query Artist($artist: String!, $first: Int!) {
@@ -16,6 +17,9 @@ const ARTISTES = gql`
           id
           name
           gender
+          area {
+            name
+          }
           releases {
             edges {
               node {
@@ -25,17 +29,9 @@ const ARTISTES = gql`
           }
           fanArt {
             backgrounds {
+              imageID
               url
             }
-            banners {
-              url
-            }
-            logosHD {
-              url
-            }
-          }
-          discogs {
-            realName
           }
           theAudioDB {
             biography
@@ -47,7 +43,13 @@ const ARTISTES = gql`
 `;
 
 const LogoStyle = styled.section`
-  margin: 20px;
+  position: absolute;
+  margin: 10px;
+`;
+
+const InformationBox = styled.section`
+  text-align: center;
+  margin-top: 30px;
 `;
 
 class Home extends Component {
@@ -78,26 +80,32 @@ class Home extends Component {
         <LogoStyle>
           <Logo />
         </LogoStyle>
-        <Query
-          query={ARTISTES}
-          variables={{ artist: this.state.artist, first: 10 }}
-        >
-          {({ loading, error, data }) => {
-            if (loading) return <div>Loading...</div>;
-            if (error) return <div>Error :(</div>;
+        <div>
+          <FavoritesSidebar />
+          <Query
+            query={ARTISTES}
+            variables={{ artist: this.state.artist, first: 10 }}
+          >
+            {({ loading, error, data }) => {
+              if (loading) return <InformationBox>Loading...</InformationBox>;
+              if (error)
+                return (
+                  <InformationBox>
+                    No artists was found with this name..
+                  </InformationBox>
+                );
 
-            const artists = data.search.artists.nodes;
-
-            console.log(data.search.artists);
-            return (
-              <div class>
-                {artists.map(artist => (
-                  <ArtistCard key={artist.id} artist={artist} />
-                ))}
-              </div>
-            );
-          }}
-        </Query>
+              const artists = data.search.artists.nodes;
+              return (
+                <div>
+                  {artists.map(artist => (
+                    <ArtistCard key={artist.id} artist={artist} />
+                  ))}
+                </div>
+              );
+            }}
+          </Query>
+        </div>
       </div>
     );
   }
