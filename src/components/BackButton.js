@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withRouter } from "react-router-dom";
 
 const Button = styled.section`
   float: left;
@@ -13,17 +14,13 @@ const Button = styled.section`
 `;
 
 class BackButton extends Component {
-  static contextTypes = {
-    router: () => true
-  };
-
   render() {
     return (
-      <Button onClick={this.context.router.history.goBack}>
+      <Button onClick={this.props.history.goBack}>
         <FontAwesomeIcon icon="chevron-left" size="2x" />
       </Button>
     );
   }
 }
 
-export default BackButton;
+export default withRouter(BackButton);

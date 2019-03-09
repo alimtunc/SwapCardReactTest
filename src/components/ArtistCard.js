@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CardBox, Button } from "../assets/AppStyle";
-import FavoritesButton from "./FavoritesButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Title = styled.h1`
   font-size: 1.5em;
@@ -15,9 +15,10 @@ const BiographBox = styled.section`
 `;
 
 const DetailsButton = styled(Button)`
-  bottom: 10px;
-  right: 10px;
-  margin-top: 10px;
+  float: right;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
 `;
 
 class ArtistCard extends Component {
@@ -48,7 +49,13 @@ class ArtistCard extends Component {
               state: { artist: this.props.artist }
             }}
           >
-            <DetailsButton>Read more </DetailsButton>
+            <DetailsButton>
+              <FontAwesomeIcon
+                style={{ marginLeft: "5px" }}
+                icon="arrow-circle-right"
+                size="2x"
+              />
+            </DetailsButton>
           </Link>
         </BiographBox>
       </CardBox>

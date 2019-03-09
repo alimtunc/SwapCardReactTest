@@ -7,25 +7,34 @@ export const Header = styled.section`
   padding: 2px;
 `;
 
+// export const Button = styled.button`
+//   color: #2502461;
+//   font-size: 1em;
+//   border: 2px solid #00cc88;
+//   border-radius: 3px;
+//   height: 36px;
+//   width: auto;
+//   margin-top: 10px;
+//   float: right;
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
+
 export const Button = styled.button`
-  color: #2502461;
-  font-size: 1em;
-  border: 2px solid #00cc88;
-  border-radius: 3px;
-  height: 36px;
-  width: auto;
-  margin-top: 10px;
-  float: right;
-  &:hover {
-    cursor: pointer;
-  }
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 `;
 
 export const CardBox = styled.section`
   position: relative;
   margin: auto;
   margin-top: 30px;
-  padding: 10px;
+  padding: 15px;
   width: 50%;
   border: 4px solid #00cc88;
   border-radius: 5px;
