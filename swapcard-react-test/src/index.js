@@ -3,16 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import ArtistDetails from "./components/ArtistDetails";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./js/store/index";
 
 ReactDOM.render(
-  <Router>
-    <div>
-      <Route exact path="/" component={App} />
-      <Route path="/ArtistDetails" component={ArtistDetails} />
-    </div>
-  </Router>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 
