@@ -51,7 +51,7 @@ class ArtistDetails extends Component {
             {biography}
             <h4>Some songs :</h4>
             <div>
-              {titles.length == 0 ? (
+              {titles.length === 0 ? (
                 <p>No songs was found</p>
               ) : (
                 titles
@@ -63,11 +63,12 @@ class ArtistDetails extends Component {
             </div>
             <ImageBox>
               <h4>Pictures :</h4>
-              {fanArt.length == 0 ? (
+              {fanArt.length === 0 ? (
                 <p>No pictures was found</p>
               ) : (
                 fanArt.map(data => (
                   <Image
+                    key={data.imageID}
                     style={style.wrapper}
                     src={data.url}
                     height={200}

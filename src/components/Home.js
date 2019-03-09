@@ -55,7 +55,7 @@ const InformationBox = styled.section`
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { artist: "Booba" };
+    this.state = { artist: "Nirvana" };
 
     this.updateArtist = this.updateArtist.bind(this);
   }
@@ -68,7 +68,7 @@ class Home extends Component {
     return (
       <div>
         <Header>
-          <form action="">
+          <form>
             <input
               type="search"
               value={this.state.artist}
